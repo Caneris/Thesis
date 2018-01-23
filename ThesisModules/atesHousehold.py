@@ -6,9 +6,6 @@ Created on Thu Jan  4 14:38:19 2018
 @author: canerates
 """
 
-import sys
-sys.path.append("/Users/canerates/Documents/thesis/ThesisModules/pair")
-
 import numpy as np
 import ThesisModules.pair.pairStates as pair
 #from numba import jit
