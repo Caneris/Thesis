@@ -186,6 +186,56 @@ def capital_supply_r(cp, r_min=1e-8, r_max=0.04, grid_points=5, T=250000, plot=F
 
     return np.asarray(asset_means)
 
+def capital_supply_r2(cp, r_vals = np.linspace(1e-8, 0.04, 5), T=250000, plot=False):
+    
+    β, u, du, b, w = cp.β, cp.u, cp.du, cp.b, cp.w 
+    grid_max, grid_size = cp.grid_max, cp.grid_size
+    Π_w, Π_r = cp.Π_w, cp.Π_r
+    z_w_vals, z_r_vals = cp.z_w_vals, cp.z_r_vals
+    interest_rate_shock = cp.interest_rate_shock
+    
+    asset_means = []
+    
+    for i, r_val in enumerate(r_vals):
+        hh = canersProblem(r=r_val,
+                           w=w,
+                           β=β,
+                           Π_w=Π_w,
+                           Π_r=Π_r,
+                           z_w_vals=z_w_vals,
+                           z_r_vals=z_r_vals,
+                           b=b,
+                           grid_max=grid_max,
+                           grid_size=grid_size,
+                           u=u,
+                           du=du,
+                           interest_rate_shock=interest_rate_shock)
+        mean = asset_mean(hh, T=T)
+        asset_means.append(mean)
+        print('Finished iterating {:01.0f} %'.format(((i+1)/ len(r_vals))*100))
+        
+        if r_val == r_vals[-4]:
+            print('\n We are almost there!!')
+            print('\n Only THREE more r values left!! :D')
+        elif r_val == r_vals[-3]:
+            print('\n Wait for it!....')
+        elif r_val == r_vals[-2]:
+            print('\n WAIT FOR IT!........')
+        elif r_val == r_vals[-1]:
+            print('\n FINISHED!!!! YAY!! ;D')
+
+    if plot:
+        fig, ax = plt.subplots(figsize=(10,8))
+        ax.plot(np.asarray(asset_means), r_vals)
+        ax.set_xlabel('capital')
+        ax.set_ylabel('interest rate')
+        ax.grid(True)
+        plt.show()
+
+
+    return np.asarray(asset_means)
+        
+
         
 
 
