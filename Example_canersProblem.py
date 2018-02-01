@@ -8,7 +8,7 @@ Created on Thu Feb  1 15:17:27 2018
 
 # Here is an example 
 
-# We are going to simulate an aiyagari model with interestrate and income 
+# We are going to simulate an aiyagari model with interest rate and income 
 # being shocked
 
 from ThesisModules.thesisHousehold import *
