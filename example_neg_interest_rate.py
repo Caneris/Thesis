@@ -41,7 +41,8 @@ capital_r_shock = capital_supply_r(cp_r_shock,
                                    grid_points=10,
                                    T=100000)
 
-# since I need to multiply every I had to write another function
+# since I need to multiply every grid point by E_z
+# I had to write another function
 # where I can use the interest rate grid as an argument.
 # In that way I can multiply every gridpoint by E_z
 
