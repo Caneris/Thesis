@@ -51,7 +51,7 @@ cp_no_r_shock = canersProblem()
 r_vals=np.linspace(1e-8, 0.04, 10)*E_z
 
 capital_no_r_shock = capital_supply_r2(cp_no_r_shock,
-                                       r_vals=np.linspace(1e-8, 0.04, 10)*E_z,
+                                       r_vals=r_vals,
                                        T=100000)
 
 fig, ax = plt.subplots(figsize=(8,10))
