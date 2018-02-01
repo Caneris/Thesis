@@ -168,7 +168,7 @@ def capital_supply_r(cp, r_min=1e-8, r_max=0.04, grid_points=5, T=250000, plot=F
                            interest_rate_shock=interest_rate_shock)
         mean = asset_mean(hh, T=T)
         asset_means.append(mean)
-        print('Finished iteration for r = {:f}'.format(r_val))
+        print('Finished iterating {:01.0f} %'.format(((i+1)/ grid_points)*100))
         
         if r_val == r_vals[-4]:
             print('We are almost there!!')
