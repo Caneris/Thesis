@@ -24,7 +24,7 @@ P2, P4 = 1-P1, 0.5*(1-P3)
 z_r_vals = (2, 0.2, -1)
 
 
-# Compute the expected interest rate E_r
+# Compute the expected shock to the interest rate E_z
 E_z = expect.exp_val(z_vals=z_r_vals, P_z=Π_r)
 
 # I am going to use E_z in an economy without any shocks to
