@@ -121,7 +121,7 @@ def compute_asset_series(cp,
     mc = MarkovChain(Π)
     v_init, c_init = initialize(cp)
     K = lambda c: coleman_operator(c, cp)
-    c = qe.compute_fixed_point(K, c_init, verbose=verbose)
+    c = qe.compute_fixed_point(K, c_init, verbose=verbose, max_iter=100)
     cf = lambda a, i_z: np.interp(a, cp.asset_grid, c[:, i_z])
     a = np.zeros(T+1)
     z_seq = mc.simulate(T)
@@ -152,7 +152,7 @@ def capital_supply_r(cp, r_min=1e-8, r_max=0.04, grid_points=5, T=250000, plot=F
     r_vals = np.linspace(r_min, r_max, grid_points)
     asset_means = []
     
-    for r_val in r_vals:
+    for i, r_val in enumerate(r_vals):
         hh = canersProblem(r=r_val,
                            w=w,
                            β=β,
@@ -171,18 +171,23 @@ def capital_supply_r(cp, r_min=1e-8, r_max=0.04, grid_points=5, T=250000, plot=F
         print('Finished iterating {:01.0f} %'.format(((i+1)/ grid_points)*100))
         
         if r_val == r_vals[-4]:
-            print('We are almost there!!')
-            print('Only three more r values left!! :D')
+            print('\n We are almost there!!')
+            print('\n Only THREE more r values left!! :D')
         elif r_val == r_vals[-3]:
-            print('Wait for it!....')
+            print('\n Wait for it!....')
         elif r_val == r_vals[-2]:
-            print('WAIT FOR IT!........')
+            print('\n WAIT FOR IT!........')
         elif r_val == r_vals[-1]:
-            print('FINISHED!!!! YAY!! ;D')
+            print('\n FINISHED!!!! YAY!! ;D')
 
     if plot:
         fig, ax = plt.subplots(figsize=(10,8))
         ax.plot(np.asarray(asset_means), r_vals)
+        ax.set_xlabel('capital')
+        ax.set_ylabel('interest rate')
+        ax.grid(True)
+        plt.show()
+
 
     return np.asarray(asset_means)
 
@@ -216,13 +221,13 @@ def capital_supply_r2(cp, r_vals = np.linspace(1e-8, 0.04, 5), T=250000, plot=Fa
         
         if r_val == r_vals[-4]:
             print('\n We are almost there!!')
-            print('\n Only THREE more r values left!! :D')
+            print('\n Only THREE more r values left!! :D \n')
         elif r_val == r_vals[-3]:
-            print('\n Wait for it!....')
+            print('\n Wait for it!.... \n ')
         elif r_val == r_vals[-2]:
-            print('\n WAIT FOR IT!........')
+            print('\n WAIT FOR IT!........ \n')
         elif r_val == r_vals[-1]:
-            print('\n FINISHED!!!! YAY!! ;D')
+            print('\n FINISHED!!!! YAY!! ;D \n')
 
     if plot:
         fig, ax = plt.subplots(figsize=(10,8))
@@ -234,8 +239,6 @@ def capital_supply_r2(cp, r_vals = np.linspace(1e-8, 0.04, 5), T=250000, plot=Fa
 
 
     return np.asarray(asset_means)
-        
-
         
 
 
