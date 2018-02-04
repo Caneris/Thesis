@@ -17,7 +17,7 @@ class canersPessimist:
     """
     This class is a version of the 'canersProblem' class with 
     pessimistic beliefs. It has a wage and interest rate shock.
-    The agents have pessimistic expactations on the interest rates
+    The agents have pessimistic expectations on the interest rates
     development. They think the interest rate is more likely to
     become negative.
     
